@@ -1,0 +1,52 @@
+﻿<table class="table table-sm table-striped table-bordered">
+
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">@TableTitle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Checkouts?.Count() > 0)
+            {
+                @foreach(Checkout c in Checkouts)
+                {
+                    <tr>
+                        <td>@c.Name</td>
+                        <td>@c.State</td>
+                        <th>Book</th>
+                        <th>Quantity</th>
+                    </tr>
+                    @foreach(Basket cli in c.Lines)
+                    {
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>@cli.Books.BookName</td>
+                            <td>@cli.Quantity</td>
+                        </tr>
+                    }    
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No Carts</td>
+                </tr>
+            }
+    </tbody>
+
+</table>
+@code {
+
+    [Parameter]
+    public string TableTitle { get; set; } = "Carts";
+
+    [Parameter]
+    public IEnumerable<Checkout> Checkouts { get; set; }
+
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Submitted";
+
+    [Parameter]
+    public EventCallback<int> CartSelected { get; set; }
+}
