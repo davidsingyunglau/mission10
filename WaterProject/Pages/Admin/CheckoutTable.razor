@@ -17,12 +17,18 @@
                         <th>Book</th>
                         <th>Quantity</th>
                     </tr>
-                    @foreach(Basket cli in c.Lines)
+                    @foreach(BasketLineItem cli in c.Lines)
                     {
                         <tr>
                             <td colspan="2"></td>
-                            <td>@cli.Books.BookName</td>
+                            <td>@cli.Book.Title</td>
                             <td>@cli.Quantity</td>
+
+                            <td>
+                                <button class="btn btn-sm btn-danger" @onclick="@(x=>CheckoutSelected.InvokeAsync(c.CheckoutId))">
+                                    @ButtonLabel
+                                </button>
+                            </td>
                         </tr>
                     }    
                 }
@@ -45,8 +51,8 @@
     public IEnumerable<Checkout> Checkouts { get; set; }
 
     [Parameter]
-    public string ButtonLabel { get; set; } = "Submitted";
+    public string ButtonLabel { get; set; } = "Collected";
 
     [Parameter]
-    public EventCallback<int> CartSelected { get; set; }
+    public EventCallback<int> CheckoutSelected { get; set; }
 }

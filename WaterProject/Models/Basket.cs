@@ -47,6 +47,7 @@ namespace WaterProject.Models
             return sum;
         }
 
+    }
         public class BasketLineItem
         {
             [Key]
@@ -55,5 +56,4 @@ namespace WaterProject.Models
             public int Quantity { get; set; }
 
         }
-    }
 }
