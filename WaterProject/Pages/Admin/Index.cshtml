@@ -1,5 +1,6 @@
 ﻿@page "/admin"
-
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
 @{
 }
 
@@ -9,7 +10,7 @@
 
 <head>
     <title>BookStore Admin</title>
-    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <base href="/" />
 </head>
 <body>
